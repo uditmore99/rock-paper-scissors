@@ -34,6 +34,8 @@ function playRound() {
 
   if (computerSelection === playerSelection) {
     results = "Its a tie!";
+    userScore += 1;
+    compScore += 1;
   } else if (diff === 1 || diff === -2) {
     results = "You win! " + playerSelection + " beats " + computerSelection;
     userScore += 1;
