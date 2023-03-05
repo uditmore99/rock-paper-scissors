@@ -123,7 +123,7 @@ async function playRound() {
 
   // alert(results);
 
-  if (userScore === 3 || compScore === 3) {
+  if (userScore === 5 || compScore === 5) {
     return resultCondition();
   }
 
