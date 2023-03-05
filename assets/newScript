@@ -3,17 +3,20 @@ let computerSelection = "";
 let playerSelection = "";
 let diff = undefined;
 let results = "";
-let compScore = 0;
-let userScore = 0;
+let compScore = undefined;
+let userScore = undefined;
 
 var userClickedOn = "";
 var playerImg;
 var computerImg;
 
+//below is DOM Manipulation code
+
+const playBtn = document.getElementById("play");
+const resetBtn = document.getElementById("reset");
+
 const playerScore = document.getElementById("playerScore");
 const computerScore = document.getElementById("computerScore");
-
-const imgDisplay = document.getElementById("gmbrd");
 
 const playerImgDisplay = document.getElementById("playerGame");
 const computerImgDisplay = document.getElementById("computerGame");
@@ -40,6 +43,8 @@ function getComputerChoice() {
 async function getPlayerChoice() {
   // playerSelection = prompt("Rock? Paper? Scissors?").toLowerCase();
   await rpsEventListeners();
+
+  playerSelection = userClickedOn;
 }
 
 function checkDiff() {
@@ -61,16 +66,13 @@ function roundResult() {
     results = "Its a tie!";
     userScore += 1;
     compScore += 1;
-    imgDisplay.style.backgroundColor = "black";
   } else if (diff === 1 || diff === -2) {
     results = "You win! " + playerSelection + " beats " + computerSelection;
     userScore += 1;
-    imgDisplay.style.backgroundColor = "green";
   } else {
     results =
       "You lose ;__; " + computerSelection + " beats " + playerSelection;
     compScore += 1;
-    imgDisplay.style.backgroundColor = "red";
   }
 }
 
@@ -78,40 +80,31 @@ function rpsEventListeners() {
   return new Promise((resolve) => {
     rock.addEventListener("click", () => {
       userClickedOn = "rock";
-      playerSelection = userClickedOn;
-      console.log("Player chooses " + playerSelection);
-      getComputerChoice();
-      console.log("Computer chooses " + computerSelection);
-      playRound(playerSelection, computerSelection);
-      //count += 1;
+      console.log(userClickedOn);
       resolve();
     });
 
     paper.addEventListener("click", () => {
       userClickedOn = "paper";
-      playerSelection = userClickedOn;
-      console.log("Player chooses " + playerSelection);
-      getComputerChoice();
-      console.log("Computer chooses " + computerSelection);
-      playRound(playerSelection, computerSelection);
-      //count += 1;
+      console.log(userClickedOn);
       resolve();
     });
 
     scissors.addEventListener("click", () => {
       userClickedOn = "scissors";
-      playerSelection = userClickedOn;
-      console.log("Player chooses " + playerSelection);
-      getComputerChoice();
-      console.log("Computer chooses " + computerSelection);
-      playRound(playerSelection, computerSelection);
-      //count += 1;
+      console.log(userClickedOn);
       resolve();
     });
   });
 }
 
 async function playRound() {
+  await getPlayerChoice();
+  console.log("Player chooses " + playerSelection);
+
+  await getComputerChoice();
+  console.log("Computer chooses " + computerSelection);
+
   displayRPS(playerSelection, computerSelection);
 
   diff = checkDiff();
@@ -123,9 +116,8 @@ async function playRound() {
 
   // alert(results);
 
-  if (userScore === 3 || compScore === 3) {
-    return resultCondition();
-  }
+  playerSelection = "";
+  computerSelection = "";
 
   return results;
 }
@@ -157,45 +149,39 @@ function createComputerImg() {
 }
 
 async function gameExecution() {
-  await getPlayerChoice();
+  //game exec
 
-  console.log(results);
-  console.log(" ");
+  for (let i = 0; i < 3; i++) {
+    console.log("Game: " + (i + 1));
+    playRound(playerSelection, computerSelection);
+    console.log(results);
+    console.log(" ");
+  }
+  await resultCondition();
 }
 
 function resultCondition() {
-  if (userScore === compScore) {
-    console.log(
-      "It's a tie ( ͡° ͜ʖ ͡°) \n Final Score is " + userScore + " : " + compScore
-    );
-    resultBoard.innerHTML =
-      "It's a tie ( ͡° ͜ʖ ͡°) !\n Final Score is " + userScore + " : " + compScore;
-    imgDisplay.style.backgroundColor = "grey";
-    endGame();
-  } else if (userScore > compScore) {
-    console.log("You won!\n Final Score is " + userScore + " : " + compScore);
-    resultBoard.innerHTML =
-      "You won!\n Final Score is " + userScore + " : " + compScore;
-    imgDisplay.style.backgroundColor = "green";
-    endGame();
-  } else if (userScore < compScore) {
-    console.log(
-      "You lose ;__;\n Final Score is " + userScore + " : " + compScore
-    );
-    resultBoard.innerHTML =
-      "You lose ;__; \n Final Score is " + userScore + " : " + compScore;
-    imgDisplay.style.backgroundColor = "red";
-    endGame();
-  }
+  return new Promise((resolve) => {
+    if (typeof userScore !== "undefined" && typeof compScore !== "undefined") {
+      if (userScore > compScore) {
+        console.log(
+          "You won!\n Final Score is " + userScore + " : " + compScore
+        );
+        resultBoard.innerHTML =
+          "You won!\n Final Score is " + userScore + " : " + compScore;
+        resolve();
+      } else
+        console.log(
+          "You lose ;__;\n Final Score is " + userScore + " : " + compScore
+        );
+      resultBoard.innerHTML =
+        "You lose ;__; \n Final Score is " + userScore + " : " + compScore;
+      resolve();
+    }
+  });
 }
 
-function endGame() {
-  rock.style.pointerEvents = "none";
-  paper.style.pointerEvents = "none";
-  scissors.style.pointerEvents = "none";
-}
-
-function game() {
+async function game() {
   createPlayerImg();
 }
 

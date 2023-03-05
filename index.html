@@ -6,11 +6,55 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+
 </head>
 
 <body>
 
+  <!-- <center>
+    <div class="startReset">
+      <img id="play" src="assets/play.png" alt="">
+      <img id="reset" src="assets/reset.png" alt="">
+    </div>
+  </center> -->
+
+  <div class="scoreBoard">
+    <div class="displayScore" id="playerScore">Player Score!</div>
+    <div class="displayScore" id="computerScore">Computer Score!</div>
+  </div>
+
+  <center>
+    <div id="resultBoard">
+      Click on any one of the choices to START!
+    </div>
+  </center>
+
+  <div class="GameBoard" id="gmbrd">
+    <div class="displayGame" id="playerGame">
+      <!-- <img class="displayGame" id="playerGame" src="" alt=""> -->
+    </div>
+    <div class="displayGame" id="computerGame">
+      <!-- <img class="displayGame" id="computerGame" src="" alt=""> -->
+    </div>
+  </div>
+
+  <div class="rpsParent">
+    <div class="rock rpsElement">
+      <img id="rockImg" src="assets/rock.png" alt="" />
+    </div>
+    <div class="paper rpsElement">
+      <img id="paperImg" src="assets/paper.png" alt="" />
+    </div>
+    <div class="scissors rpsElement">
+      <img id="scissorsImg" src="assets/scissors.png" alt="" />
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 
 </html>

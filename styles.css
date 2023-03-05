@@ -1,0 +1,104 @@
+* {
+  /* border: solid wheat 2px; */
+}
+
+html,
+body {
+  /* border: solid wheat 2px; */
+  margin-left: 0px;
+  background-color: black;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* .startReset>img {
+  cursor: pointer;
+} */
+
+
+/*///////////////////////////////*/
+.scoreBoard {
+  display: flex;
+  flex-direction: row;
+  border: solid brown 3px;
+  height: 50px;
+  margin: 10px;
+}
+
+.displayScore {
+  text-align: center;
+  padding: 15px;
+  margin: auto;
+  width: 100%;
+}
+
+#playerScore {
+  border-right: solid brown 1.5px;
+}
+
+#computerScore {
+  border-left: solid brown 1.5px;
+}
+
+/*///////////////////////////////*/
+
+
+.GameBoard {
+  display: flex;
+  flex-direction: row;
+  border: solid brown 3px;
+  height: 300px;
+  margin: 10px;
+  /* background-color: green; */
+}
+
+.displayGame {
+
+  text-align: center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  margin: auto;
+  width: 100%;
+
+}
+
+.displayGame>img {
+  height: 120px;
+  cursor: pointer;
+
+}
+
+/* #playerGame {
+  border-right: solid brown 1.5px;
+
+}
+
+#computerGame {
+  border-left: solid brown 1.5px;
+} */
+
+/*///////////////////////////////*/
+
+.rpsParent {
+  display: flex;
+  flex-direction: row;
+  border: solid brown 3px;
+  height: auto;
+  margin: 10px;
+  justify-content: space-evenly;
+  padding: auto;
+  /* align-items: center; */
+}
+
+.rpsElement>img {
+  height: 75px;
+  cursor: pointer;
+}
+
+/*///////////////////////////////*/
+
+.startReset>img {
+  height: 60px;
+  padding-inline: 50px;
+  padding-top: 10px;
+}
